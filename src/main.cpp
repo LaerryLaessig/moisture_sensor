@@ -22,7 +22,7 @@ void setup() {
   while(!Serial) { }
   Serial.setTimeout(2000);
   client.setInsecure();
-  // Verbindung zum WLAN
+  // Connected to WiFi
 
   Serial.println(WIFI_SSID);
 
@@ -34,7 +34,7 @@ void setup() {
       delay(100);
   }
   Serial.println("");
-  Serial.println("Verbunden!");
+  Serial.println("connected!");
 
   // Syncing progress and the time will be printed to Serial.
   timeSync(TZ_INFO, "pool.ntp.org", "time.nis.gov");
