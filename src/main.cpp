@@ -55,6 +55,7 @@ void loop() {
     sensor.addField("rssi", WiFi.RSSI());
     sensor.addField("moisture", analogRead(SensorPin));
     boolean upload_succes = true;
+    int sleep_time = 0;
     // Print what are we exactly writing
     Serial.print("Writing: ");
     Serial.println(sensor.toLineProtocol());
@@ -74,7 +75,12 @@ void loop() {
 
     if (upload_succes) {
       Serial.print("Sleep for 1h");
-      ESP.deepSleep(3600e6);
-      }
-    
+      sleep_time = 3600e6;
+    } else {
+      sleep_time = 60e6;
+    }
+    Serial.print("Sleep for ");
+    Serial.print(sleep_time/1e6);
+    Serial.println("sec");
+    ESP.deepSleep(sleep_time);
     }
